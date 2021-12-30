@@ -9,7 +9,7 @@ For development: `npm install`
 
 To run:
 
-For development (live reload): `npx nodemon index.js`
+For development (live reload): `nodemon index.js`, `npx nodemon index.js` or the custom `npm run start:dev`
 
 For production: `node index.js` or `npm start` 
 
