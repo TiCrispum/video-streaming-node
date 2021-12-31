@@ -28,3 +28,11 @@ Build the image: `docker build -t video-streaming-node --file Dockerfile .`
 Run in a container: `docker run -d -p $PORT:$PORT -e PORT video-streaming-node ` to pass the needed port to the container.
 
 [comment]: <> (The internal ports are not important,  the important one is the port in which to expose it)
+
+You can also connect to you repository using: `docker login registry-url --username your-username --password-stdin`
+It can be dockerhub, azure container registry, or anything really.
+`your password`
+
+And then tag `docker tag video-streaming-node ticrispum.azurecr.io/video-streaming-node:latest` (private) or 
+`docker tag video-streaming-node khalilswdp/video-streaming-node:latest` (public) and push the locally built image to the registry:
+`docker push ticrispum.azurecr.io/video-streaming-node:latest ` or `docker push khalilswdp/video-streaming-node:latest `
