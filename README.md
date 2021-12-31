@@ -25,4 +25,6 @@ Build the image: `docker build -t video-streaming-node --file Dockerfile .`
 
 [comment]: <> (Of the format: `docker build -t image-name:tag --file path-to-docker-file path-to-project`)
 
-Run in a container: `docker run -d -p 3000:3000 video-streaming-node`
+Run in a container: `docker run -d -p $PORT:$PORT -e PORT video-streaming-node ` to pass the needed port to the container.
+
+[comment]: <> (The internal ports are not important,  the important one is the port in which to expose it)
