@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/video', (req, res) => {
-    const path = "../videos/SampleVideo_1280x720_1mb.mp4";
+    const path = "./videos/SampleVideo_1280x720_1mb.mp4";
     fs.stat(path, (err, stats) => {
         if (err) {
             console.error("An error occurred");
