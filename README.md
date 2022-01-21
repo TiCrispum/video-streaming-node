@@ -36,3 +36,6 @@ It can be dockerhub, azure container registry, or anything really.
 And then tag `docker tag video-streaming-node ticrispum.azurecr.io/video-streaming-node:latest` (private) or 
 `docker tag video-streaming-node khalilswdp/video-streaming-node:latest` (public) and push the locally built image to the registry:
 `docker push ticrispum.azurecr.io/video-streaming-node:latest ` or `docker push khalilswdp/video-streaming-node:latest `
+
+## Using Docker Compose:
+Type `docker compose up --build` to run the application
