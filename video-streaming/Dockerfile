@@ -6,8 +6,8 @@ COPY package*.json ./
 
 RUN npm install --only=production
 
-COPY ./src ./src
+COPY src ./src
 
-COPY ./videos ./videos
+COPY videos ./videos
 
 CMD npm start
