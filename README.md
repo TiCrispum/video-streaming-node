@@ -39,3 +39,6 @@ And then tag `docker tag video-streaming-node ticrispum.azurecr.io/video-streami
 
 ## Using Docker Compose:
 Type `docker compose up --build` to run the application
+Use `docker compose ps` to check the list of running containers related to the current docker-compose file
+Use `docker compose stop` to gracefully shutdown while keeping containers
+Use `docker compose down` to gracefully shut down and remove the containers after shutdown (preferred)
