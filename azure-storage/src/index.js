@@ -30,7 +30,7 @@ app.get('/video', (req, res) => {
 
         res. writeHead(200, {
             'Content-Length': properties.contentLength,
-            'ContentType': 'video/mp4',
+            'Content-Type': 'video/mp4',
         });
 
         blobService.getBlobToStream(containerName, videoPath, res, err => {
