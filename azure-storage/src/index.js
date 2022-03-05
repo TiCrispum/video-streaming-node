@@ -36,10 +36,11 @@ app.get('/video', (req, res) => {
         blobService.getBlobToStream(containerName, videoPath, res, err => {
             if (err) {
                 // ... error handling ...
-                res.sendStatus(500);
+                // res.sendStatus(500);
                 return;
             }
         });
+        console.log('Serving videos from the azure account: ' + STORAGE_ACCOUNT_NAME)
     });
 });
 

@@ -21,6 +21,7 @@ app.get('/video', (req, res) => {
             headers: req.headers
         },
         forwardResponse => {
+            console.log('Forwarding video requests to ' + VIDEO_STORAGE_HOST + ':' + VIDEO_STORAGE_PORT)
             res.writeHead(forwardResponse.statusCode, forwardResponse.headers);
             forwardResponse.pipe(res);
         }
