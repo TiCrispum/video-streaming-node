@@ -1,5 +1,21 @@
 {
+  "name": "azure-storage",
+  "version": "1.0.0",
+  "description": "A simple azure storage service written in Node",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Khalil SLEIMI",
+  "license": "GPL-3.0 License",
   "dependencies": {
-    "azure-storage": "^2.10.7"
+    "azure-storage": "^2.10.7",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

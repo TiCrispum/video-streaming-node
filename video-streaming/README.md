@@ -13,11 +13,7 @@ To run:
 
 For development (live reload): `nodemon index.js`, `npx nodemon index.js` or the custom `npm run start:dev`
 
-For production: `node index.js` or `npm start` 
-
-Please set the environment variable PORT with the desired port you want the application to listen on before running the application, otherwise it'll fail.
-
-e.g. use `export PORT=3000`
+For production: `node index.js` or `npm start`
 
 ## In a container:
 
@@ -42,3 +38,8 @@ Type `docker compose up --build` to run the application
 Use `docker compose ps` to check the list of running containers related to the current docker-compose file
 Use `docker compose stop` to gracefully shutdown while keeping containers
 Use `docker compose down` to gracefully shut down and remove the containers after shutdown (preferred)
+
+# Environment Variables:
+Please set the environment variable `PORT` with the desired port you want the application to listen on before running the application, otherwise it'll fail.
+e.g. 
+`export PORT=3000`
