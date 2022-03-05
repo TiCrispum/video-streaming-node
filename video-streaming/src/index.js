@@ -30,5 +30,5 @@ app.get('/video', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Video Streaming Microservice is Up and Running`)
+    console.log(`Video Streaming Microservice is Up and Running!`)
 })

@@ -44,5 +44,5 @@ app.get('/video', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('Microservice online');
+    console.log('Azure Streaming Service is Up and Running!');
 })
