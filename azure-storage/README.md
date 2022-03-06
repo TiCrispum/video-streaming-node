@@ -33,12 +33,6 @@ And then tag `docker tag azure-storage ticrispum.azurecr.io/azure-storage:latest
 `docker tag azure-storage khalilswdp/azure-storage:latest` (public) and push the locally built image to the registry:
 `docker push ticrispum.azurecr.io/azure-storage:latest ` or `docker push khalilswdp/azure-storage:latest `
 
-## Using Docker Compose:
-Type `docker compose up --build` to run the application
-Use `docker compose ps` to check the list of running containers related to the current docker-compose file
-Use `docker compose stop` to gracefully shutdown while keeping containers
-Use `docker compose down` to gracefully shut down and remove the containers after shutdown (preferred)
-
 # Environment Variables:
 Please set the environment variable `PORT` with the desired port you want the application to listen on before running the application, otherwise it'll fail.
 You also need to set the environment variables `STORAGE_ACCOUNT_NAME` and `STORAGE_ACCESS_KEY` to the variables that allow you to use your azure storage.
