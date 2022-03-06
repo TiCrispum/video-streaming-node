@@ -105,3 +105,5 @@ dist
 
 # IDE specific files
 .idea
+
+node_modules/
