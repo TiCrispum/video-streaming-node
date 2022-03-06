@@ -12,6 +12,8 @@ services:
       - PORT=80
       - VIDEO_STORAGE_HOST=video-storage
       - VIDEO_STORAGE_PORT=80
+      - DBHOST=mongodb://db:27017
+      - DBNAME=video-streaming
     restart: "no"
   azure-storage:
     image: azure-storage
@@ -26,3 +28,9 @@ services:
       - STORAGE_ACCOUNT_NAME=${STORAGE_ACCOUNT_NAME}
       - STORAGE_ACCESS_KEY=${STORAGE_ACCESS_KEY}
     restart: "no"
+  db:
+    image: mongo:5.0.6
+    container_name: db
+    ports:
+      - "4002:27017"
+    restart: "always"
