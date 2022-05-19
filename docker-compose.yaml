@@ -34,3 +34,20 @@ services:
     ports:
       - "4002:27017"
     restart: "always"
+
+  history:
+    image: history
+    build:
+      context: ./history
+      dockerfile: Dockerfile-dev
+    container_name: history
+
+    volumes:
+      - /tmp/history/npm-cache:/root/.npm:z
+      - ./history/src:/usr/src/app/src:z
+    ports:
+      - "4003:80"
+    environment:
+      - PORT=80
+      - NODE_ENV=development
+    restart: "no"
