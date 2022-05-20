@@ -22,19 +22,23 @@ const RABBIT = process.env.RABBIT;
 function setupHandlers(app, db, messageChannel) {
     const videosCollection = db.collection("videos");
 
-    app.post("/viewed", (req, res) => {
-        const videoPath = req.body.videoPath;
-        videosCollection
-            .insertOne({ videoPath: videoPath })
+    function consumeViewedMessage(msg) {
+        const parsedMsg = JSON.parse(msg.content.toString());
+
+        return videosCollection.insertOne({ videoPath: parsedMsg.videoPath })
             .then(() => {
-                console.log(`Added video ${videoPath} to history.`);
-            })
-            .catch(err => {
-                console.error(`Error adding video ${videoPath} to history.`);
+                console.log(`Added video ${parsedMsg.videoPath} to history.`);
+                messageChannel.ack(msg);
+            }).catch(err => {
+                console.error(`Error adding video ${parsedMsg.videoPath} to history.`);
                 console.error(err && err.stack || err);
-                res.sendStatus(500);
             })
-    })
+    }
+
+    return messageChannel.assertQueue("viewed", {})
+        .then(() => {
+            return messageChannel.consume("viewed", consumeViewedMessage);
+        })
 }
 
 function connectDb() {
