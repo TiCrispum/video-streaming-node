@@ -6,4 +6,5 @@ COPY package*.json ./
 RUN npm install --only=production
 COPY ./src ./src
 
-CMD npm start
+CMD npx wait-port rabbit:5672 && \
+    npm start
