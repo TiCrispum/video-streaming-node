@@ -29,8 +29,16 @@ function connectDb() {
 
 function connectRabbit() {
     return amqp.connect(RABBIT)
-        .then(messagingConnection => {
-            return messagingConnection.createChannel();
+        .then(connection => {
+            console.log("Connected to RabbitMQ.")
+            return connection.createChannel()
+                .then(messageChannel => {
+                    return messageChannel
+                        .assertExchange("viewed", "fanout")
+                        .then(() => {
+                            return messageChannel;
+                        });
+                });
         });
 }
 
@@ -94,7 +102,7 @@ function sendViewedMessage(messageChannel, videoPath) {
 
     const jsonMsg= JSON.stringify(msg);
 
-    messageChannel.publish("", "viewed", Buffer.from(jsonMsg));
+    messageChannel.publish("viewed", "", Buffer.from(jsonMsg));
 }
 
 main()

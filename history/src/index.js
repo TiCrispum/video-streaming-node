@@ -35,9 +35,17 @@ function setupHandlers(app, db, messageChannel) {
             })
     }
 
-    return messageChannel.assertQueue("viewed", {})
+    return messageChannel.assertExchange("viewed", "fanout")
         .then(() => {
-            return messageChannel.consume("viewed", consumeViewedMessage);
+            return messageChannel
+                .assertQueue("", {exclusive: true});
+        })
+        .then(response => {
+            const queueName = response.queue;
+            return messageChannel.bindQueue(queueName, "viewed", "")
+                .then(() => {
+                    return messageChannel.consume(queueName, consumeViewedMessage)
+                })
         })
 }
 
