@@ -1,8 +1,8 @@
 ## Using Docker Compose:
-Type `docker compose up --build` to run the application
-Use `docker compose ps` to check the list of running containers related to the current docker-compose file
-Use `docker compose stop` to gracefully shutdown while keeping containers
-Use `docker compose down` to gracefully shut down and remove the containers after shutdown (preferred)
+Type `docker compose -f docker-compose-dev.yml up --build` to run the application
+Use `docker compose -f docker-compose-dev.yml ps` to check the list of running containers related to the current docker-compose file
+Use `docker compose -f docker-compose-dev.yml stop` to gracefully shutdown while keeping containers
+Use `docker compose -f docker-compose-dev.yml down` to gracefully shut down and remove the containers after shutdown (preferred)
 
 # Environment Variables:
 Please set the environment variables `STORAGE_ACCOUNT_NAME` and `STORAGE_ACCESS_KEY`:

@@ -18,9 +18,6 @@ services:
       - DBHOST=mongodb://mongo-db:27017
       - DBNAME=video-streaming
       - NODE_ENV=development
-    depends_on:
-      - video-storage
-      - mongo-db
     restart: "no"
   video-storage:
     image: video-storage
