@@ -52,7 +52,7 @@ services:
     environment:
       - PORT=80
       - DBHOST=mongodb://mongo-db:27017
-      - DBNAME=video-streaming
+      - DBNAME=history
       - NODE_ENV=development
     restart: "no"
 
