@@ -30,6 +30,8 @@ function main() {
                             return;
                         }
 
+                        sendViewedMessage(videoRecord.videoPath);
+
                         const forwardRequest = http.request(
                             {
                                 host: VIDEO_STORAGE_HOST,
@@ -57,6 +59,35 @@ function main() {
                 console.log(`Video Streaming Microservice is Up and Running!`)
             });
         });
+}
+
+function sendViewedMessage(videoPath) {
+    const postOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+
+    const requestBody = {
+        videoPath: videoPath
+    };
+
+    const req = http.request(
+        "http://history/viewed",
+        postOptions
+    );
+
+    req.on("close", () => {
+        return true
+    });
+
+    req.on("error", (err) => {
+        return false
+    });
+
+    req.write(JSON.stringify(requestBody));
+    req.end();
 }
 
 main()
