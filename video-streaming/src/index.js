@@ -1,6 +1,7 @@
 const express = require('express')
 const http = require("http");
 const mongodb = require("mongodb");
+const amqp = require("amqplib");
 
 const app = express()
 
@@ -8,11 +9,16 @@ if (!process.env.PORT) {
     throw new Error("Please specify the port number for the HTTP server with the environment variable PORT.");
 }
 
+if (!process.env.RABBIT) {
+    throw new Error("Please specify the RabbitMQ host using environment variable RABBIT");
+}
+
 const PORT = process.env.PORT;
 const VIDEO_STORAGE_HOST = process.env.VIDEO_STORAGE_HOST;
 const VIDEO_STORAGE_PORT = parseInt(process.env.VIDEO_STORAGE_PORT);
 const DBHOST = process.env.DBHOST;
 const DBNAME = process.env.DBNAME;
+const RABBIT = process.env.RABBIT;
 
 function main() {
 

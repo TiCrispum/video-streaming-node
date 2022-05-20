@@ -12,8 +12,10 @@
   "author": "Khalil SLEIMI",
   "license": "GPL-3.0 License",
   "dependencies": {
+    "amqplib": "^0.9.0",
     "express": "^4.17.2",
-    "mongodb": "^4.4.1"
+    "mongodb": "^4.4.1",
+    "wait-port": "^0.2.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

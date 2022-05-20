@@ -18,6 +18,7 @@ services:
       - DBHOST=mongodb://mongo-db:27017
       - DBNAME=video-streaming
       - NODE_ENV=development
+      - RABBIT=amqp://guest:guest@rabbit:5672
     restart: "no"
   video-storage:
     image: video-storage
