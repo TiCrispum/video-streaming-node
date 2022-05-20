@@ -1,5 +1,5 @@
 ## Using Docker Compose:
-Type `docker compose -f docker-compose-dev.yml up --build` to run the application
+Type `docker compose -f docker-compose-dev.yml up --build` to run the application (especially if you changed or added a package, otherwise, omit the --build)
 Use `docker compose -f docker-compose-dev.yml ps` to check the list of running containers related to the current docker-compose file
 Use `docker compose -f docker-compose-dev.yml stop` to gracefully shutdown while keeping containers
 Use `docker compose -f docker-compose-dev.yml down` to gracefully shut down and remove the containers after shutdown (preferred)
