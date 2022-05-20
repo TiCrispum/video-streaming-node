@@ -45,5 +45,5 @@ app.get('/video', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log('Azure Streaming Service is Up and Running!');
+    console.log('Video Streaming Service is Up and Running!');
 })
