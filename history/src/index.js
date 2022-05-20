@@ -1,19 +1,25 @@
 const express = require("express");
 const mongodb = require("mongodb");
+const amqp = require("amqplib");
 const bodyParser = require("body-parser");
 
 if (!process.env.DBHOST) {
-    throw new Error("Please specify the databse host using environment variable DBHOST.");
+    throw new Error("Please specify the database host using environment variable DBHOST.");
 }
 
 if (!process.env.DBNAME) {
     throw new Error("Please specify the name of the database using environment variable DBNAME");
 }
 
+if (!process.env.RABBIT) {
+    throw new Error("Please specify the RabbitMQ host using environment variable RABBIT");
+}
+
 const DBHOST = process.env.DBHOST;
 const DBNAME = process.env.DBNAME;
+const RABBIT = process.env.RABBIT;
 
-function setupHandlers(app, db) {
+function setupHandlers(app, db, messageChannel) {
     const videosCollection = db.collection("videos");
 
     app.post("/viewed", (req, res) => {
@@ -38,11 +44,18 @@ function connectDb() {
         });
 }
 
-function startHttpServer(db) {
+function connectRabbit() {
+    return amqp.connect(RABBIT)
+        .then(messagingConnection => {
+            return messagingConnection.createChannel();
+        });
+}
+
+function startHttpServer(db, messageChannel) {
     return new Promise(resolve => {
         const app = express();
         app.use(bodyParser.json());
-        setupHandlers(app, db);
+        setupHandlers(app, db, messageChannel);
 
         const port = process.env.PORT && parseInt(process.env.PORT) || 3000;
         app.listen(port, () => {
@@ -56,7 +69,10 @@ function main() {
 
     return connectDb()
         .then(db => {
-            return startHttpServer(db);
+            return connectRabbit()
+                .then(messageChannel => {
+                    return startHttpServer(db, messageChannel);
+                });
         })
 
 }

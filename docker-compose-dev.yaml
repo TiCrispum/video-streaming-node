@@ -54,6 +54,10 @@ services:
       - DBHOST=mongodb://mongo-db:27017
       - DBNAME=history
       - NODE_ENV=development
+      - RABBIT=amqp://guest:guest@rabbit:5672
+    depends_on:
+      - mongo-db
+      - rabbit
     restart: "no"
 
 
