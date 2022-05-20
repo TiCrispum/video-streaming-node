@@ -51,6 +51,8 @@ services:
       - "4003:80"
     environment:
       - PORT=80
+      - DBHOST=mongodb://mongo-db:27017
+      - DBNAME=video-streaming
       - NODE_ENV=development
     restart: "no"
 
