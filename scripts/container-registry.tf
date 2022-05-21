@@ -1,21 +1,21 @@
-resource "azurerm_container_registry" "ticrispum" {
-  name = "ticrispum"
-  resource_group_name = azurerm_resource_group.ticrispum.name
+resource "azurerm_container_registry" "ticrispum_cr" {
+  name = var.app_name
+  resource_group_name = azurerm_resource_group.ticrispum_rg.name
 
-  location = "francecentral"
+  location = var.location
   admin_enabled = true
   sku = "Basic"
 }
 
 output "registry_hostname" {
-  value = azurerm_container_registry.ticrispum.login_server
+  value = azurerm_container_registry.ticrispum_cr.login_server
 }
 
 output "registry_un" {
-  value = azurerm_container_registry.ticrispum.admin_username
+  value = azurerm_container_registry.ticrispum_cr.admin_username
 }
 
 output "registry_pw" {
-  value = azurerm_container_registry.ticrispum.admin_password
+  value = azurerm_container_registry.ticrispum_cr.admin_password
   sensitive = true
 }
