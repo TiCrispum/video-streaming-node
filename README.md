@@ -19,3 +19,7 @@ or
 `http://localhost:4001/video?path=SampleVideo_1280x720_1mb.mp4` if you want to probe more internally (to be hidden eventually)
 # Reminder:
 Once you move to Kubernetes, make sure the cluster is stateless. Storage should never be handled within the cluster (video, databases, metadata...). 
+
+# Terraform
+We are now making a switch to using terraform with an Azure Account.
+Use `terraform plan` to see what terraform will do. `terraform apply` to apply changes to the infrastructure and `terraform destroy` if you want to destroy the infrastructure (to avoid incurring huge costs by leaving things open).
