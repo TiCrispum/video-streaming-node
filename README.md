@@ -22,4 +22,5 @@ Once you move to Kubernetes, make sure the cluster is stateless. Storage should 
 
 # Terraform
 We are now making a switch to using terraform with an Azure Account.
+First apply `terraform init` to initialize the tfstate and download the providers (I'm not commiting the state because it might contain private and sensitive data)
 Use `terraform plan` to see what terraform will do. `terraform apply` to apply changes to the infrastructure and `terraform destroy` if you want to destroy the infrastructure (to avoid incurring huge costs by leaving things open).
