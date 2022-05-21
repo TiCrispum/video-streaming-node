@@ -4,7 +4,7 @@ resource "azurerm_container_registry" "ticrispum_cr" {
 
   location = var.location
   admin_enabled = true
-  sku = "Basic"
+  sku = var.sku
 }
 
 output "registry_hostname" {

@@ -5,3 +5,7 @@ variable "app_name" {
 variable location {
   default = "France Central"
 }
+
+variable sku {
+  default = "Basic"
+}
