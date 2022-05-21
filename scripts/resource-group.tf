@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "ticrispum_rg" {
+resource "azurerm_resource_group" "resource_group" {
   name     = var.app_name
   location = var.location
 }
