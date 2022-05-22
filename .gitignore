@@ -109,3 +109,4 @@ dist
 /scripts/.terraform.lock.hcl
 /scripts/.terraform/providers/registry.terraform.io/hashicorp/azurerm/3.7.0/linux_amd64/terraform-provider-azurerm_v3.7.0_x5
 /scripts/terraform.tfstate.backup
+/scripts/.terraform/
