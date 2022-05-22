@@ -26,3 +26,11 @@ First apply `terraform init` to initialize the tfstate and download the provider
 Use `terraform plan` to see what terraform will do. `terraform apply` to apply changes to the infrastructure and `terraform destroy` if you want to destroy the infrastructure (to avoid incurring huge costs by leaving things open).
 Append `-auto-approve` if you don't wish to keep saying yes and confirming your actions
 Use `terraform output registry_pw` to show the password of the created registry's password, otherwise, it won't be shown.
+
+We need to manually create the service principal in order to allow kubernetes to talk with azure in a secure way:
+Use `az account show` and get the id, then perform `az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/<The-id-you-copied>"`
+Take the `appId` and `password` from the previous command's output, and put them in the `variables.tf` variables `client_id` and `client_secret`. (If afraid you'll commit them mistakenly, then just omit them from variables.tf file and terraform will prompt you for them when you try to apply)
+
+In order to authenticate with kubernetes (locally installed kubectl with azure kubernetes service) you can use the following command: `az aks get-credentials --resource-group ticrispum --name ticrispum` which will automatically get and set the `~/.kube/config` file with the relevant details: `cluster_client_certificate, cluster_client_key, cluster_ca_certificate`
+Now that kubectl is initialized, you can use it. Or, you can install the dashboard `kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/aio/deploy/recommended.yaml` and use it `kubectl proxy` and visit ` http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/` and then authenticating using the `~/.kube/config` file
+
