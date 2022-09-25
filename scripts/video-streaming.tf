@@ -99,6 +99,7 @@ resource "kubernetes_deployment" "service_deployment" {
                     image = local.image_tag
                     name  = local.service_name
 
+                    # eventually remove all these environments
                     env {
                         name = "PORT"
                         value = "80"
@@ -108,6 +109,17 @@ resource "kubernetes_deployment" "service_deployment" {
                         name = "RABBIT"
                         value = "amqp://guest:guest@rabbit:5672"
                     }
+
+                    env {
+                        name = "DBHOST"
+                        value = "mongodb://20.74.54.203:27017"
+                    }
+
+                    env {
+                        name = "DBNAME"
+                        value = "video-streaming"
+                    }
+
                 }
 
                 image_pull_secrets {
