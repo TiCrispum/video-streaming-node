@@ -2,6 +2,7 @@ FROM node:16.13.1-alpine
 
 WORKDIR /usr/src/app
 COPY package*.json ./
+COPY videos ./videos
 RUN npm install --only=production
 COPY src ./src
 CMD npx wait-port rabbit:5672 && \
