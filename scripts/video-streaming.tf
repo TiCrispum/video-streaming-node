@@ -43,3 +43,25 @@ resource "null_resource" "docker_push" {
         command = "docker push ${local.image_tag}"
     }
 }
+
+locals {
+    dockercreds = {
+        auths = {
+            "${local.login_server}" = {
+                auth = base64encode("${local.username}:${local.password}")
+            }
+        }
+    }
+}
+
+resource "kubernetes_secret" "docker_credentials" {
+    metadata {
+        name = "docker-credentials"
+    }
+
+    data = {
+        ".dockerconfigjson" = jsonencode(local.dockercreds)
+    }
+
+    type = "kubernetes.io/dockerconfigjson"
+}
