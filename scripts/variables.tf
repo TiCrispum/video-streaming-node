@@ -30,3 +30,11 @@ variable kubernetes_cluster_default_node_pool_vm_size {
 variable sku {
   default = "Basic"
 }
+
+variable client_id {
+
+}
+
+variable client_secret {
+
+}
