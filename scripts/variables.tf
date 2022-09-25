@@ -2,6 +2,9 @@ variable "app_name" {
   default = "ticrispum"
 }
 
+variable "app_version" {
+}
+
 variable location {
   default = "France Central"
 }
