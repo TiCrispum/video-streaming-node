@@ -103,6 +103,11 @@ resource "kubernetes_deployment" "service_deployment" {
                         name = "PORT"
                         value = "80"
                     }
+
+                    env {
+                        name = "RABBIT"
+                        value = "amqp://guest:guest@rabbit:5672"
+                    }
                 }
 
                 image_pull_secrets {
