@@ -27,7 +27,7 @@ resource "kubernetes_deployment" "rabbit" {
 
       spec {
         container {
-          image = "3.10.1-management"
+          image = "rabbitmq:3.10.1-management"
           name  = "rabbit"
 
           port {
