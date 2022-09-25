@@ -65,3 +65,71 @@ resource "kubernetes_secret" "docker_credentials" {
 
     type = "kubernetes.io/dockerconfigjson"
 }
+
+resource "kubernetes_deployment" "service_deployment" {
+
+    depends_on = [ null_resource.docker_push ]
+
+    metadata {
+        name = local.service_name
+
+    labels = {
+            pod = local.service_name
+        }
+    }
+
+    spec {
+        replicas = 1
+
+        selector {
+            match_labels = {
+                pod = local.service_name
+            }
+        }
+
+        template {
+            metadata {
+                labels = {
+                    pod = local.service_name
+                }
+            }
+
+            spec {
+                container {
+                    image = local.image_tag
+                    name  = local.service_name
+
+                    env {
+                        name = "PORT"
+                        value = "80"
+                    }
+                }
+
+                image_pull_secrets {
+                    name = kubernetes_secret.docker_credentials.metadata[0].name
+                }
+            }
+        }
+    }
+}
+
+resource "kubernetes_service" "service" {
+    metadata {
+        name = local.service_name
+    }
+
+    spec {
+        selector = {
+            pod = kubernetes_deployment.service_deployment.metadata[0].labels.pod
+        }
+
+        session_affinity = "ClientIP"
+
+        port {
+            port        = 80
+            target_port = 80
+        }
+
+        type             = "LoadBalancer"
+    }
+}
