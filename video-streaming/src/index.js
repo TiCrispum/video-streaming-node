@@ -13,7 +13,7 @@ if (!process.env.RABBIT) {
     throw new Error("Please specify the RabbitMQ host using environment variable RABBIT");
 }
 
-const PORT = process.env.PORT && parseInt(process.env.PORT) || 3000;
+const PORT = process.env.PORT && parseInt(process.env.PORT);
 const VIDEO_STORAGE_HOST = process.env.VIDEO_STORAGE_HOST;
 const VIDEO_STORAGE_PORT = parseInt(process.env.VIDEO_STORAGE_PORT);
 const DBHOST = process.env.DBHOST;

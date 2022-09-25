@@ -3,7 +3,7 @@ const azure = require('azure-storage');
 
 const app = express();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT && parseInt(process.env.PORT)
 const STORAGE_ACCOUNT_NAME =
     process.env.STORAGE_ACCOUNT_NAME;
 const STORAGE_ACCESS_KEY =
