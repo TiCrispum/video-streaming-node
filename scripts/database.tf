@@ -2,7 +2,7 @@ resource "kubernetes_deployment" "database" {
     metadata {
         name = "database"
 
-        labels {
+        labels = {
             pod = "database"
         }
     }
@@ -15,28 +15,27 @@ resource "kubernetes_deployment" "database" {
                 pod = "database"
             }
         }
-    }
 
-    template {
-        metadata {
-            labels = {
-                pod = "database"
+        template {
+            metadata {
+                labels = {
+                    pod = "database"
+                }
             }
-        }
 
-        spec {
-            container {
-                image = "mongo:5.0.6"
-                name = "database"
+            spec {
+                container {
+                    image = "mongo:5.0.6"
+                    name = "database"
 
-                port {
-                    container_port = 27017
+                    port {
+                        container_port = 27017
+                    }
                 }
             }
         }
     }
 }
-
 resource "kubernetes_service" "database" {
     metadata {
         name = "database"
