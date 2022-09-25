@@ -36,6 +36,7 @@ resource "kubernetes_deployment" "database" {
         }
     }
 }
+
 resource "kubernetes_service" "database" {
     metadata {
         name = "database"
@@ -50,6 +51,5 @@ resource "kubernetes_service" "database" {
             port = 27017
         }
 
-        type = "LoadBalancer"
     }
 }
